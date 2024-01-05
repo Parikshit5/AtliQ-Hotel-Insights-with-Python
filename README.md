@@ -153,18 +153,16 @@ latest_df = pd.concat([df, df_august], ignore_index=True, axis=0)
    ```
 
 7. **Revenue Realized per Hotel
-
- Type:**
    ```python
    df_bookings_all.groupby("property_name")["revenue_realized"].sum().round(2).sort_values()
    ```
 
-8. **Average Rating Per City:**
+9. **Average Rating Per City:**
    ```python
    df_bookings_all.groupby("city")["ratings_given"].mean().round(2)
    ```
 
-9. **Pie Chart of Revenue Realized per Booking Platform:**
+10. **Pie Chart of Revenue Realized per Booking Platform:**
    ```python
    df_bookings_all.groupby("booking_platform")["revenue_realized"].sum().plot(kind="pie")
    ```
