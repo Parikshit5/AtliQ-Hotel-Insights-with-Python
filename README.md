@@ -9,12 +9,12 @@
 - fact_aggregated_bookings
 - fact_bookings.csv
 
-**Read bookings data:**
+**Reading bookings data:**
 ```python
 df_bookings = pd.read_csv('datasets/fact_bookings.csv')
 ```
 
-**Explore bookings data:**
+**Exploring bookings data:**
 ```python
 df_bookings.head()
 df_bookings.shape
@@ -25,7 +25,7 @@ df_bookings.booking_platform.value_counts().plot(kind="bar")
 df_bookings.describe()
 ```
 
-**Read other files:**
+**Reading other files:**
 ```python
 df_date = pd.read_csv('datasets/dim_date.csv')
 df_hotels = pd.read_csv('datasets/dim_hotels.csv')
@@ -35,20 +35,20 @@ df_agg_bookings = pd.read_csv('datasets/fact_aggregated_bookings.csv')
 
 *2. Data Cleaning*
 
-**Clean invalid guests:**
+**Cleaning invalid guests:**
 ```python
 df_bookings = df_bookings[df_bookings.no_guests > 0]
 ```
 
 **Outlier removal in revenue generated:**
 ```python
-# Check for negative values
+# Checking for negative values
 df_bookings = df_bookings[df_bookings.revenue_generated > 0]
 ```
 
 *3. Data Transformation*
 
-**Create occupancy percentage column:**
+**Creating occupancy percentage column:**
 ```python
 df_agg_bookings['occ_pct'] = df_agg_bookings['successful_bookings'] / df_agg_bookings['capacity']
 df_agg_bookings['occ_pct'] = df_agg_bookings['occ_pct'].apply(lambda x: round(x * 100, 2))
@@ -79,7 +79,7 @@ df_june_22 = df[df["mmm yy"] == "Jun 22"]
 df_june_22.groupby('city')['occ_pct'].mean().round(2).sort_values(ascending=False).plot(kind="bar")
 ```
 
-**Append new data for August:**
+**Appending new data for August:**
 ```python
 df_august = pd.read_csv("datasets/new_data_august.csv")
 latest_df = pd.concat([df, df_august], ignore_index=True, axis=0)
